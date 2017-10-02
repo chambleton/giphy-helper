@@ -1,1 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+body {
+    background:lightgray;
+    font-family: Roboto,"Helvetica Neue",sans-serif;
+}
+
+.small-btn  {
+    min-width: 10px !important;
+    line-height: 24px !important;
+}
+
+.slim-list-item, .mat-list-item-content {
+    height: 30px !important;
+}
+
+h4 {
+    margin-bottom: 0px !important;
+}
