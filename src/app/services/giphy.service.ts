@@ -6,7 +6,7 @@ export class GiphyService {
 
   constructor() { }
 
-  getGiphies(): Promise<Giphy[]> {
+  getSavedGiphies(): Promise<Giphy[]> {
     
     var giphies: Giphy[] = [
       { caption: "Whoa!", imageUrl: "http://media1.giphy.com/media/f3OTIn9dXTcnC/giphy-downsized.gif", clickCount: 0 },

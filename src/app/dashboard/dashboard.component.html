@@ -1,12 +1,28 @@
-<p>
-  my giphies
-  <input ng-model="">
-</p>
-
-<ul>
-  <li *ngFor="let giphy of giphies">
-      {{giphy.caption}}    
-    <img class="giphy-item" src="{{giphy.imageUrl}}" /> 
-    {{giphy.clickCount}}
+<div class="search">
+    <input class="search-text" [(ngModel)]="searchText" mdInput placeholder="Search for giphies" />
+    <button md-raised-button class="small-btn" color="primary" (click)="searchGiphies()" type="button">Search</button> &nbsp; <button type="button" md-raised-button color="primary" (click)="clearSearch()" class="small-btn">Clear</button>
+  
+  <!-- 
+  <form ngNoForm (submit)="searchLyrics()">
+    <input [(ngModel)]="searchText" mdInput placeholder="Search for lyrics">
+    <button md-raised-button class="small-btn" color="primary" type="submit">Search</button> &nbsp; <button md-raised-button color="primary" (click)="clearSearch()" class="small-btn">Clear</button>
+  </form>
+-->
+  <li *ngFor="let giphy of giphies">      
+    <img class="giphy-item" src="{{giphy.imageUrl}}" />     
   </li>
-</ul>
+  
+</div>
+
+<div>
+  <h4>Saved Giphies</h4>
+
+  <md-card *ngFor="let giphy of savedGiphies">
+    <md-card-header>        
+      <md-card-title>{{giphy.caption}}</md-card-title>
+      <md-card-subtitle>{{giphy.clickCount}}</md-card-subtitle>
+    </md-card-header>
+    <img class="giphy-item" src="{{giphy.imageUrl}}">
+  </md-card>
+
+</div>
