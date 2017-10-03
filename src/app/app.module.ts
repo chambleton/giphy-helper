@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { GiphyService } from './services/giphy.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     AppRoutingModule,
     MdButtonModule, MdInputModule, MdToolbarModule, MdListModule, MdIconModule,
   ],
-  providers: [],
+  providers: [GiphyService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

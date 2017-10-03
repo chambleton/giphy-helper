@@ -1,3 +1,12 @@
 <p>
-  dashboard works!
+  my giphies
+  <input ng-model="">
 </p>
+
+<ul>
+  <li *ngFor="let giphy of giphies">
+      {{giphy.caption}}    
+    <img class="giphy-item" src="{{giphy.imageUrl}}" /> 
+    {{giphy.clickCount}}
+  </li>
+</ul>
