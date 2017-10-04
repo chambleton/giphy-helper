@@ -49,8 +49,8 @@ export class DashboardComponent implements OnInit {
     }, 3000);
   }
 
-  public deleteGiphy(giphy: Giphy) {
-    this.savedGiphies = this.savedGiphies.splice(this.savedGiphies.indexOf(giphy),1);
+  public deleteGiphy(giphy: Giphy) {    
+    this.savedGiphies.splice(this.savedGiphies.indexOf(giphy),1);     
   }
 
 }
