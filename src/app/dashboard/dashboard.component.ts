@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GiphyService } from '../services/giphy.service';
 import { Giphy } from '../services/giphy.model';
+import { ClipboardService } from '../services/clipboard.service';
 
 
 @Component({
@@ -16,7 +17,7 @@ export class DashboardComponent implements OnInit {
   public savedGiphies: Giphy[];
   public giphies: Giphy[];
 
-  constructor(private GiphyService: GiphyService) { }
+  constructor(private GiphyService: GiphyService, private ClipboardService: ClipboardService) { }
 
   ngOnInit() {
     this.getSavedGiphies();
@@ -36,4 +37,9 @@ export class DashboardComponent implements OnInit {
     this.searchText = "";
   }
 
+  public copyGiphy(giphy: Giphy) {
+    this.ClipboardService.copy(giphy.imageUrl);
+    giphy.clickCount++;
+  }
+  
 }

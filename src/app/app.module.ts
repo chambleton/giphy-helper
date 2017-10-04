@@ -3,11 +3,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MdButtonModule, MdInputModule, MdToolbarModule, MdCardModule, MdListModule, MdIconModule } from '@angular/material';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { GiphyService } from './services/giphy.service';
+import { ClipboardService } from './services/clipboard.service';
 
 @NgModule({
   declarations: [
@@ -18,10 +20,11 @@ import { GiphyService } from './services/giphy.service';
     BrowserModule,
     BrowserAnimationsModule,    
     FormsModule,
+    FlexLayoutModule,
     AppRoutingModule,
     MdButtonModule, MdInputModule, MdToolbarModule, MdListModule, MdIconModule, MdCardModule
   ],
-  providers: [GiphyService],
+  providers: [GiphyService, ClipboardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

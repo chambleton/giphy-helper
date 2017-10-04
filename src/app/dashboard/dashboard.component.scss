@@ -4,6 +4,7 @@
     min-width: 150px;
     max-height: 250px;
     max-width: 350px;
+    cursor: pointer;
 }
 
 .search {
@@ -16,5 +17,10 @@
 }
 
 md-card {
-    margin-top: 10px;
+    margin: 5px;
+    padding: 10px;
+
+    .click-count {
+        font-style: italic;
+    }
 }
