@@ -42,6 +42,7 @@ export class DashboardComponent implements OnInit {
   }
 
   public addGiphy(giphy: any) {
+    this.ClipboardService.copy(giphy.url);
     var newGiphy: Giphy = { caption: "New", imageUrl: giphy.url, clickCount: 0};
     this.savedGiphies.push(newGiphy);
     this.giphies.splice(this.giphies.indexOf(giphy),1);
