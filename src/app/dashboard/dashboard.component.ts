@@ -15,7 +15,7 @@ export class DashboardComponent implements OnInit {
 
   public searchText: string;
   public savedGiphies: Giphy[];
-  public giphies: Giphy[];
+  public giphies: any[];
   public imageCopied: boolean = false;
 
   constructor(private GiphyService: GiphyService, private ClipboardService: ClipboardService) { }
@@ -31,11 +31,20 @@ export class DashboardComponent implements OnInit {
   }
 
   public searchGiphies() {
-    //this.searchText
+    this.GiphyService.searchGiphies(this.searchText).then(giphies => {
+      this.giphies = giphies;      
+    });
   }
 
   public clearSearch() {
     this.searchText = "";
+    this.giphies = [];
+  }
+
+  public addGiphy(giphy: any) {
+    var newGiphy: Giphy = { caption: "New", imageUrl: giphy.url, clickCount: 0};
+    this.savedGiphies.push(newGiphy);
+    this.giphies.splice(this.giphies.indexOf(giphy),1);
   }
 
   public copyGiphy(giphy: Giphy) {
@@ -50,7 +59,7 @@ export class DashboardComponent implements OnInit {
   }
 
   public deleteGiphy(giphy: Giphy) {    
-    this.savedGiphies.splice(this.savedGiphies.indexOf(giphy),1);     
+    this.savedGiphies.splice(this.savedGiphies.indexOf(giphy),1);
   }
 
 }

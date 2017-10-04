@@ -2,15 +2,12 @@
     <input class="search-text" [(ngModel)]="searchText" mdInput placeholder="Search for giphies" />
     <button md-raised-button class="small-btn" color="primary" (click)="searchGiphies()" type="button">Search</button> &nbsp; <button type="button" md-raised-button color="primary" (click)="clearSearch()" class="small-btn">Clear</button>
   
-  <!-- 
-  <form ngNoForm (submit)="searchLyrics()">
-    <input [(ngModel)]="searchText" mdInput placeholder="Search for lyrics">
-    <button md-raised-button class="small-btn" color="primary" type="submit">Search</button> &nbsp; <button md-raised-button color="primary" (click)="clearSearch()" class="small-btn">Clear</button>
-  </form>
--->
-  <li *ngFor="let giphy of giphies">      
-    <img class="giphy-item" src="{{giphy.imageUrl}}" />     
-  </li>  
+  <div fxLayout="row" fxLayoutWrap>  
+    <md-card *ngFor="let giphy of giphies">
+      <img title="Click to copy url" class="giphy-item" (click)="addGiphy(giphy)" src="{{giphy.url}}">    
+    </md-card>    
+  </div>
+
 </div>
 
 <h4>Saved Giphies ({{savedGiphies ? savedGiphies.length : 0}})</h4>
