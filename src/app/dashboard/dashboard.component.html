@@ -10,18 +10,25 @@
 -->
   <li *ngFor="let giphy of giphies">      
     <img class="giphy-item" src="{{giphy.imageUrl}}" />     
-  </li>
-  
+  </li>  
 </div>
 
-<h4>Saved Giphies</h4>
+<h4>Saved Giphies ({{savedGiphies.length}})</h4>
+<span [hidden]=!imageCopied>Giphy url copied!</span>
+
 <div fxLayout="row" fxLayoutWrap>  
 
   <md-card *ngFor="let giphy of savedGiphies">
     <md-card-header>
-      <md-card-title><span class="caption">{{giphy.caption}}</span> <span class="click-count">({{giphy.clickCount}})</span></md-card-title>
+      <md-card-title><span class="caption">{{giphy.caption}}</span> <span class="click-count">({{giphy.clickCount}})</span>
+      <span style="text-align: right">
+          <button md-button class="small-btn" (click)="deleteGiphy(giphy)">
+              <md-icon>clear</md-icon>
+            </button>
+      </span>
+      </md-card-title>
     </md-card-header>
-    <img class="giphy-item" (click)="copyGiphy(giphy)" src="{{giphy.imageUrl}}">
+    <img title="Click to copy url" class="giphy-item" (click)="copyGiphy(giphy)" src="{{giphy.imageUrl}}">    
   </md-card>
 
 </div>

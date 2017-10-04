@@ -16,6 +16,7 @@ export class DashboardComponent implements OnInit {
   public searchText: string;
   public savedGiphies: Giphy[];
   public giphies: Giphy[];
+  public imageCopied: boolean = false;
 
   constructor(private GiphyService: GiphyService, private ClipboardService: ClipboardService) { }
 
@@ -40,6 +41,16 @@ export class DashboardComponent implements OnInit {
   public copyGiphy(giphy: Giphy) {
     this.ClipboardService.copy(giphy.imageUrl);
     giphy.clickCount++;
+
+    this.imageCopied = true;
+
+    setTimeout(() => {
+      this.imageCopied = false;
+    }, 3000);
   }
-  
+
+  public deleteGiphy(giphy: Giphy) {
+    this.savedGiphies = this.savedGiphies.splice(this.savedGiphies.indexOf(giphy),1);
+  }
+
 }
