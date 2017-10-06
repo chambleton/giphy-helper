@@ -1,6 +1,7 @@
 <div class="search">
   <form (submit)="GiphyService.search(searchText)">
     <input class="search-text" name="search" [(ngModel)]="searchText" mdInput placeholder="Search for giphies" />
+    <a style="cursor: pointer" *ngIf="searchText && searchText.length > 0" (click)="GiphyService.search(searchText)">&gt;</a>
     <button md-raised-button class="small-btn" disabled="{{searchText && searchText.length === 0}}" color="primary" type="submit">Search</button> &nbsp; <button type="button" md-raised-button disabled="{{searchText && searchText.length === 0}}" color="primary" (click)="clearSearch()" class="small-btn">Clear</button>
   </form>
 
@@ -19,15 +20,21 @@
 
   <md-card *ngFor="let giphy of savedGiphies">
     <md-card-header>
-      <md-card-title><span class="caption">{{giphy.caption}}</span> <span class="click-count">({{giphy.clickCount}})</span>
-      <span style="text-align: right">
-          <button md-button class="small-btn" (click)="deleteGiphy(giphy)">
-              <md-icon>clear</md-icon>
-            </button>
-      </span>
-      </md-card-title>
+      <md-card-title>
+        <!--
+        <span class="caption">{{giphy.caption}}</span> 
+        -->
+      <app-inline-edit [(ngModel)]="giphy.caption" (change)="editCaption($event, giphy)" [required]="true" type="text">
+      </app-inline-edit>
+      <span class="click-count">({{giphy.clickCount}})</span>
+    </md-card-title>
     </md-card-header>
-    <img title="Click to copy url" class="giphy-item" (click)="copyGiphy(giphy)" src="{{giphy.imageUrl}}">    
+    <img title="Click to copy url" class="giphy-item" (click)="copyGiphy(giphy)" src="{{giphy.imageUrl}}">
+    <md-card-actions>
+      <div class="pull-right">
+        <button md-button class="small-btn" (click)="deleteGiphy(giphy)">REMOVE</button>
+      </div>            
+    </md-card-actions>
   </md-card>
 
 </div>

@@ -34,6 +34,10 @@ export class DashboardComponent implements OnInit {
     this.GiphyService.add(newGiphy);
   }
 
+  public editCaption($event: any, giphy: Giphy) {
+    this.GiphyService.edit(giphy);
+  }
+
   public copyGiphy(giphy: Giphy) {
     this.ClipboardService.copy(giphy.imageUrl);
     giphy.clickCount++;

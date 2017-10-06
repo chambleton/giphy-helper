@@ -10,13 +10,15 @@ import { Ng2Webstorage } from 'ng2-webstorage';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { InlineEditComponent } from './dashboard/inline-edit/inline-edit.component';
 import { GiphyService } from './services/giphy.service';
 import { ClipboardService } from './services/clipboard.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent
+    DashboardComponent,
+    InlineEditComponent
   ],
   imports: [
     BrowserModule,
