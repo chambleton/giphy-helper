@@ -15,43 +15,29 @@ export class DashboardComponent implements OnInit {
 
   public searchText: string;
   public savedGiphies: Giphy[];
-  public giphies: any[];
   public imageCopied: boolean = false;
 
-  constructor(private GiphyService: GiphyService, private ClipboardService: ClipboardService) { }
+  constructor(public GiphyService: GiphyService, public ClipboardService: ClipboardService) { }
 
   ngOnInit() {
-    this.getSavedGiphies();
-  }
-
-  private getSavedGiphies() {
-    this.GiphyService.getSavedGiphies().then(giphies => {
-      this.savedGiphies = giphies;      
-    });
-  }
-
-  public searchGiphies() {
-    this.GiphyService.searchGiphies(this.searchText).then(giphies => {
-      this.giphies = giphies;      
-    });
+    this.savedGiphies = this.GiphyService.getSavedGiphies();   
   }
 
   public clearSearch() {
     this.searchText = "";
-    this.giphies = [];
+    this.GiphyService.searchGiphies = [];
   }
 
   public addGiphy(giphy: any) {
     this.ClipboardService.copy(giphy.url);
     var newGiphy: Giphy = { caption: "New", imageUrl: giphy.url, clickCount: 0};
-    this.savedGiphies.push(newGiphy);
-    this.giphies.splice(this.giphies.indexOf(giphy),1);
+    this.GiphyService.add(newGiphy);
   }
 
   public copyGiphy(giphy: Giphy) {
     this.ClipboardService.copy(giphy.imageUrl);
     giphy.clickCount++;
-
+    this.GiphyService.edit(giphy);
     this.imageCopied = true;
 
     setTimeout(() => {
@@ -59,8 +45,8 @@ export class DashboardComponent implements OnInit {
     }, 3000);
   }
 
-  public deleteGiphy(giphy: Giphy) {    
-    this.savedGiphies.splice(this.savedGiphies.indexOf(giphy),1);
+  public deleteGiphy(giphy: Giphy) {        
+    this.GiphyService.delete(giphy);    
   }
 
 }
