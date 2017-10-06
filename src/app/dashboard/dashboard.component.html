@@ -31,9 +31,8 @@
     </md-card-header>
     <img title="Click to copy url" class="giphy-item" (click)="copyGiphy(giphy)" src="{{giphy.imageUrl}}">
     <md-card-actions>
-      <div class="pull-right">
-        <button md-button class="small-btn" (click)="deleteGiphy(giphy)">REMOVE</button>
-      </div>            
+        <div fxFlex></div>
+        <button md-button class="small-btn" (click)="deleteGiphy(giphy)">REMOVE</button>      
     </md-card-actions>
   </md-card>
 
