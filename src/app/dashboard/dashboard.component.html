@@ -5,14 +5,8 @@
     <button md-raised-button class="small-btn" disabled="{{searchText && searchText.length === 0}}" color="primary" type="submit">Search</button> &nbsp; <button type="button" md-raised-button disabled="{{searchText && searchText.length === 0}}" color="primary" (click)="clearSearch()" class="small-btn">Clear</button>
   </form>
 
-  <div>
-      <div class="container drop-zone" (drop)="drop($event)" (dragover)="allowDrop($event)">
-        <!--
-          <img id="drag1" src="http://www.w3schools.com/html/img_w3slogo.gif" draggable="true"
-            (dragstart)="drag($event)" width="336" height="69">
-          </div>
-        -->
-            Drop images here!          
+  <div class="container drop-zone" (drop)="drop($event)" (dragover)="allowDrop($event)">
+    Drop images here!
   </div>
 
   <div fxLayout="row" fxLayoutWrap>  
@@ -31,13 +25,10 @@
   <md-card *ngFor="let giphy of savedGiphies">
     <md-card-header>
       <md-card-title>
-        <!--
-        <span class="caption">{{giphy.caption}}</span> 
-        -->
-      <app-inline-edit [(ngModel)]="giphy.caption" (change)="editCaption($event, giphy)" [required]="true" type="text">
-      </app-inline-edit>
-      <span class="click-count">({{giphy.clickCount}})</span>
-    </md-card-title>
+        <app-inline-edit [(ngModel)]="giphy.caption" (change)="editCaption($event, giphy)" [required]="true" type="text">
+        </app-inline-edit>
+        <span class="click-count">({{giphy.clickCount}})</span>
+      </md-card-title>
     </md-card-header>
     <img title="Click to copy url" class="giphy-item" (click)="copyGiphy(giphy)" src="{{giphy.imageUrl}}">
     <md-card-actions>
