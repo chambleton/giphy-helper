@@ -5,6 +5,16 @@
     <button md-raised-button class="small-btn" disabled="{{searchText && searchText.length === 0}}" color="primary" type="submit">Search</button> &nbsp; <button type="button" md-raised-button disabled="{{searchText && searchText.length === 0}}" color="primary" (click)="clearSearch()" class="small-btn">Clear</button>
   </form>
 
+  <div>
+      <div class="container drop-zone" (drop)="drop($event)" (dragover)="allowDrop($event)">
+        <!--
+          <img id="drag1" src="http://www.w3schools.com/html/img_w3slogo.gif" draggable="true"
+            (dragstart)="drag($event)" width="336" height="69">
+          </div>
+        -->
+            Drop images here!          
+  </div>
+
   <div fxLayout="row" fxLayoutWrap>  
     <md-card *ngFor="let giphy of GiphyService.searchGiphies">
       <img title="Click to add and copy url" class="giphy-item" (click)="addGiphy(giphy.images.fixed_height)" src="{{giphy.images.fixed_height.url}}">    
