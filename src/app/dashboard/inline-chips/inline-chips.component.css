@@ -1,0 +1,6 @@
+.mat-chip:not(.mat-basic-chip) {
+    padding: 2px 7px;
+    border-radius: 10px;
+}
+
+

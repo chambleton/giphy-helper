@@ -25,6 +25,15 @@ md-card {
     }
 }
 
+.mat-button {
+    padding: 0 5px;    
+}
+
+.mat-card-actions {
+    margin-left: 1px;
+    margin-right: 1px;
+}
+
 .drop-zone {
     background-color: #C3C7CC;
     border: 1px solid gray;
