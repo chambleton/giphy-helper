@@ -23,6 +23,9 @@ export class InlineChipsComponent {
     { name: 'Lemon' },
     { name: 'Lime' },
     { name: 'Apple' },
+    { name: 'Cherry' },
+    { name: 'Pumpkin' },
+    { name: 'Beer' },
   ];
 
 

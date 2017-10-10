@@ -1,17 +1,12 @@
-
-<md-input-container floatPlaceholder="never">  
- 
-        <md-chip-list mdPrefix #chipList >
-            <md-chip md-chips-wrap *ngFor="let tag of tags" [selectable]="selectable"
-                    [removable]="removable" (remove)="remove(tag)">
-            {{tag.name}}
-            <md-icon mdChipRemove *ngIf="removable">cancel</md-icon>
-            </md-chip>
-        </md-chip-list>
-   
-    <input mdInput placeholder="New tag..."
-            [mdChipInputFor]="chipList"
-            [mdChipInputSeparatorKeyCodes]="separatorKeysCodes"
-            [mdChipInputAddOnBlur]="addOnBlur"
-            (mdChipInputTokenEnd)="add($event)" />
-</md-input-container>
+<md-chip-list mdPrefix #tagList>
+    <md-chip md-chips-wrap *ngFor="let tag of tags" [selectable]="selectable"
+            [removable]="removable" (remove)="remove(tag)">
+    {{tag.name}}
+    <md-icon mdChipRemove *ngIf="removable">cancel</md-icon>
+    </md-chip>
+    <input class="tag-input" placeholder="New tag..."
+        [mdChipInputFor]="tagList"
+        [mdChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        [mdChipInputAddOnBlur]="addOnBlur"
+        (mdChipInputTokenEnd)="add($event)" />
+</md-chip-list>
