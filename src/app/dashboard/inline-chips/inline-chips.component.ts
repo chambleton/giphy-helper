@@ -7,7 +7,7 @@ const COMMA = 188;
 @Component({
   selector: 'inline-chips',
   templateUrl: 'inline-chips.component.html',
-  styleUrls: ['inline-chips.component.css']
+  styleUrls: ['inline-chips.component.scss']
 })
 
 export class InlineChipsComponent {

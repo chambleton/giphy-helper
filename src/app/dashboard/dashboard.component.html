@@ -1,6 +1,6 @@
 <div class="search">
   <form (submit)="GiphyService.search(searchText)">
-    <input class="search-text" name="search" [(ngModel)]="searchText" mdInput placeholder="Search for giphies" />
+    <input class="search-text" name="search" [(ngModel)]="searchText" placeholder="Search for giphies" />
     <a style="cursor: pointer" *ngIf="searchText && searchText.length > 0" (click)="GiphyService.search(searchText)">&gt;</a>
     <button md-raised-button class="small-btn" disabled="{{searchText && searchText.length === 0}}" color="primary" type="submit">Search</button> &nbsp; <button type="button" md-raised-button disabled="{{searchText && searchText.length === 0}}" color="primary" (click)="clearSearch()" class="small-btn">Clear</button>
   </form>
@@ -23,7 +23,8 @@
 <div fxLayout="row" fxLayoutWrap>  
 
   <md-card *ngFor="let giphy of savedGiphies">
-    <md-card-header>
+      <button style="float: right" md-button class="small-btn remove-btn" (click)="deleteGiphy(giphy)">REMOVE</button>      
+    <md-card-header>      
       <md-card-title>
         <app-inline-edit [(ngModel)]="giphy.caption" (change)="editCaption($event, giphy)" [required]="true" type="text">
         </app-inline-edit>
@@ -32,9 +33,7 @@
     </md-card-header>
     <img title="Click to copy url" class="giphy-item" (click)="copyGiphy(giphy)" src="{{giphy.imageUrl}}">
     <md-card-actions>
-        <inline-chips></inline-chips>
-        <div fxFlex></div>
-        <button md-button class="small-btn remove-btn" (click)="deleteGiphy(giphy)">REMOVE</button>      
+      <inline-chips></inline-chips>      
     </md-card-actions>
   </md-card>
 
