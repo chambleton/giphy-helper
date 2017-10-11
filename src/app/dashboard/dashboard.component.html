@@ -17,12 +17,13 @@
 
 </div>
 
-<h4>Saved Giphies ({{savedGiphies ? savedGiphies.length : 0}})</h4>
+<h4>Saved Giphies ({{filteredGiphies ? filteredGiphies.length : 0}})</h4>
+<input class="tag-input"  placeholder="Filter giphies" [(ngModel)]="filterText" (change)="filterGiphies($event)" />
 <span [hidden]=!imageCopied>Giphy url copied!</span>
 
 <div fxLayout="row" fxLayoutWrap>  
 
-  <md-card *ngFor="let giphy of savedGiphies">
+  <md-card *ngFor="let giphy of filteredGiphies">
       <button style="float: right" md-button class="small-btn remove-btn" (click)="deleteGiphy(giphy)">REMOVE</button>      
     <md-card-header>      
       <md-card-title>

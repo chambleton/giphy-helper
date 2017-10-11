@@ -57,7 +57,28 @@ export class GiphyService {
     return this.savedGiphies;
   }
 
+  public filterGiphies(filterText: string): Giphy[] {
+    let results: Giphy[] = [];
+    
+    this.savedGiphies.forEach((giphy) => {
+      if (giphy.caption) {
+        if (giphy.caption.toLowerCase().indexOf(filterText.toLowerCase()) >= 0) {
+          results.push(giphy);        
+        }
+      }      
 
+      giphy.tags.forEach((tag) => {
+        if (tag && tag.name) {
+          if (tag.name.toLowerCase().indexOf(filterText.toLowerCase()) >= 0) {
+            results.push(giphy);
+            return;
+          }
+        }        
+      });
+    });
+
+    return results;
+  }
 
   public search(searchText: string) {
     let baseUrl = 'https://api.giphy.com/v1/gifs/search?q=';

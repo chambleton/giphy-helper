@@ -13,14 +13,15 @@ import { ClipboardService } from '../services/clipboard.service';
 export class DashboardComponent implements OnInit {
 
   public searchText: string;
-  public savedGiphies: Giphy[];
+  public filterText: string;
+  public filteredGiphies: Giphy[];  
   public imageCopied: boolean = false;
 
   constructor(public GiphyService: GiphyService, 
               public ClipboardService: ClipboardService) { }
 
   ngOnInit() {
-    this.savedGiphies = this.GiphyService.getSavedGiphies();   
+    this.filteredGiphies = this.GiphyService.getSavedGiphies();   
   }
 
   public clearSearch() {
@@ -77,4 +78,12 @@ export class DashboardComponent implements OnInit {
     this.GiphyService.editTags(giphy, $tags);
   }
 
+  public filterGiphies($event) {
+    if (this.filterText && this.filterText.length > 0) {
+      this.filteredGiphies = this.GiphyService.filterGiphies(this.filterText);      
+    }
+    else {
+      this.filteredGiphies = this.GiphyService.getSavedGiphies();
+    }
+  }
 }
