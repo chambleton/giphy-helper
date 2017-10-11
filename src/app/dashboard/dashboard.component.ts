@@ -30,7 +30,7 @@ export class DashboardComponent implements OnInit {
 
   public addGiphy(giphy: any) {
     this.ClipboardService.copy(giphy.url);
-    var newGiphy: Giphy = { caption: "New", imageUrl: giphy.url, clickCount: 0};
+    var newGiphy: Giphy = { caption: "New", tags: [], imageUrl: giphy.url, clickCount: 0};
     this.GiphyService.add(newGiphy);
   }
 
@@ -67,9 +67,14 @@ export class DashboardComponent implements OnInit {
     ev.preventDefault();
     //console.log("DROP: " + ev);
     var data = ev.dataTransfer.getData("text");
-    var newGiphy: Giphy = { caption: "New", imageUrl: data, clickCount: 0};
+    var newGiphy: Giphy = { caption: "New", tags: [], imageUrl: data, clickCount: 0};
     this.GiphyService.add(newGiphy);
     //console.log("DATA: " + data);
     //ev.target.appendChild(document.getElementById(data));
   }
+  
+  public onTagsUpdated($tags: any[], giphy: Giphy) {
+    this.GiphyService.editTags(giphy, $tags);
+  }
+
 }

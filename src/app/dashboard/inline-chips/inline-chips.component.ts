@@ -1,5 +1,5 @@
 
-import {Component} from '@angular/core';
+import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {MdChipInputEvent, ENTER} from '@angular/material';
 
 const COMMA = 188;
@@ -16,22 +16,20 @@ export class InlineChipsComponent {
   removable: boolean = true;
   addOnBlur: boolean = true;
 
+  @Input() tags: any[];
+  @Output() tagsUpdated: EventEmitter<any[]> = new EventEmitter<any[]>();
+
   // Enter, comma
   separatorKeysCodes = [ENTER, COMMA];
-
-  tags = [
-    { name: 'Lemon' },
-    { name: 'Lime' },
-    { name: 'Apple' },
-    { name: 'Cherry' },
-    { name: 'Pumpkin' },
-    { name: 'Beer' },
-  ];
 
 
   add(event: MdChipInputEvent): void {
     let input = event.input;
     let value = event.value;
+
+    if (!this.tags) {
+      this.tags = [];
+    }
 
     // Add our person
     if ((value || '').trim()) {
@@ -42,6 +40,7 @@ export class InlineChipsComponent {
     if (input) {
       input.value = '';
     }
+    this.tagsUpdated.emit(this.tags);
   }
 
   remove(tag: any): void {
@@ -49,6 +48,7 @@ export class InlineChipsComponent {
 
     if (index >= 0) {
       this.tags.splice(index, 1);
-    }
+      this.tagsUpdated.emit(this.tags);
+    }    
   }
 }

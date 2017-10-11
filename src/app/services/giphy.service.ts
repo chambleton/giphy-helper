@@ -44,11 +44,16 @@ export class GiphyService {
     this.save();
   }
 
+  public editTags(giphy: Giphy, tags: any[]) {
+    this.savedGiphies[this.savedGiphies.indexOf(giphy)].tags = tags;
+    this.save();
+  }
+
   private save() {
     this.LocalStorageService.store(GIPHY_STORE_KEY, this.savedGiphies);
   }
 
-  public getSavedGiphies(): Giphy[] {      
+  public getSavedGiphies(): Giphy[] {
     return this.savedGiphies;
   }
 

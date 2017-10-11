@@ -33,7 +33,7 @@
     </md-card-header>
     <img title="Click to copy url" class="giphy-item" (click)="copyGiphy(giphy)" src="{{giphy.imageUrl}}">
     <md-card-actions>
-      <inline-chips></inline-chips>      
+      <inline-chips [tags]="giphy.tags" (tagsUpdated)="onTagsUpdated($event, giphy)"></inline-chips>      
     </md-card-actions>
   </md-card>
 
