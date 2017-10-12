@@ -8,6 +8,9 @@
   <div class="container drop-zone" (drop)="drop($event)" (dragover)="allowDrop($event)">
     Drop images here!
   </div>
+  <div>
+      <input class="paste-input" placeholder="Paste url to add" [(ngModel)]="pastedUrl" (change)="pastedGiphyUrl($event)" />
+  </div>
 
   <div fxLayout="row" fxLayoutWrap>  
     <md-card *ngFor="let giphy of GiphyService.searchGiphies">
@@ -18,7 +21,7 @@
 </div>
 
 <h4>Saved Giphies ({{filteredGiphies ? filteredGiphies.length : 0}})</h4>
-<input class="tag-input"  placeholder="Filter giphies" [(ngModel)]="filterText" (ngModelChange)="filterGiphies($event, giphy)" />
+<input class="tag-input"  placeholder="Filter giphies" [(ngModel)]="filterText" (ngModelChange)="filterGiphies($event)" />
 <span [hidden]=!imageCopied>Giphy url copied!</span>
 
 <div fxLayout="row" fxLayoutWrap>  

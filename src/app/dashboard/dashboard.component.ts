@@ -13,6 +13,7 @@ import { ClipboardService } from '../services/clipboard.service';
 export class DashboardComponent implements OnInit {
 
   public searchText: string;
+  public pastedUrl: string;
   public filterText: string;
   public filteredGiphies: Giphy[];  
   public imageCopied: boolean = false;
@@ -51,7 +52,8 @@ export class DashboardComponent implements OnInit {
   }
 
   public deleteGiphy(giphy: Giphy) {        
-    this.GiphyService.delete(giphy);    
+    this.GiphyService.delete(giphy);
+    this.filterGiphies(null);
   }
 
   public allowDrop(ev) {
@@ -78,7 +80,7 @@ export class DashboardComponent implements OnInit {
     this.GiphyService.editTags(giphy, $tags);
   }
 
-  public filterGiphies($event, giphy: Giphy) {    
+  public filterGiphies($event) {    
     if (this.filterText && this.filterText.length > 0) {
       this.filteredGiphies = this.GiphyService.filterGiphies(this.filterText);      
     }
@@ -86,4 +88,13 @@ export class DashboardComponent implements OnInit {
       this.filteredGiphies = this.GiphyService.getSavedGiphies();
     }
   }
+
+  public pastedGiphyUrl($event) {
+    if (this.pastedUrl && this.pastedUrl.length > 5) {
+      var newGiphy: Giphy = { caption: "New", tags: [], imageUrl: this.pastedUrl, clickCount: 0};
+      this.GiphyService.add(newGiphy);
+      this.pastedUrl = "";
+    }    
+  }
+
 }

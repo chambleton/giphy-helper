@@ -9,16 +9,22 @@
 
 .search {
     margin: 5px 2px 5px 2px;
+}
 
-    input {
-        width: 200px;
-        height: 20px;
-    }
+.search-text {
+    width: 200px;
+    height: 20px;
 }
 
 .tag-input {
     width: 120px;
     margin-left: 5px;
+    padding-left: 2px;
+}
+
+.paste-input {
+    width: 330px;
+    margin-left: 10px;
     padding-left: 2px;
 }
 
