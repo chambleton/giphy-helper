@@ -18,7 +18,7 @@
 </div>
 
 <h4>Saved Giphies ({{filteredGiphies ? filteredGiphies.length : 0}})</h4>
-<input class="tag-input"  placeholder="Filter giphies" [(ngModel)]="filterText" (change)="filterGiphies($event)" />
+<input class="tag-input"  placeholder="Filter giphies" [(ngModel)]="filterText" (ngModelChange)="filterGiphies($event, giphy)" />
 <span [hidden]=!imageCopied>Giphy url copied!</span>
 
 <div fxLayout="row" fxLayoutWrap>  

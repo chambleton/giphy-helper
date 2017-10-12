@@ -64,6 +64,7 @@ export class GiphyService {
       if (giphy.caption) {
         if (giphy.caption.toLowerCase().indexOf(filterText.toLowerCase()) >= 0) {
           results.push(giphy);        
+          return;
         }
       }      
 

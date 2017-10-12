@@ -78,7 +78,7 @@ export class DashboardComponent implements OnInit {
     this.GiphyService.editTags(giphy, $tags);
   }
 
-  public filterGiphies($event) {
+  public filterGiphies($event, giphy: Giphy) {    
     if (this.filterText && this.filterText.length > 0) {
       this.filteredGiphies = this.GiphyService.filterGiphies(this.filterText);      
     }
