@@ -1,44 +1,61 @@
-<div class="search">
-  <form (submit)="GiphyService.search(searchText)">
-    <input class="search-text" name="search" [(ngModel)]="searchText" placeholder="Search for giphies" />
-    <a style="cursor: pointer" *ngIf="searchText && searchText.length > 0" (click)="GiphyService.search(searchText)">&gt;</a>
-    <button md-raised-button class="small-btn" disabled="{{searchText && searchText.length === 0}}" color="primary" type="submit">Search</button> &nbsp; <button type="button" md-raised-button disabled="{{searchText && searchText.length === 0}}" color="primary" (click)="clearSearch()" class="small-btn">Clear</button>
-  </form>
 
-  <div class="container drop-zone" (drop)="drop($event)" (dragover)="allowDrop($event)">
-    Drop images here!
-  </div>
-  <div>
+<md-sidenav-container class="sidenav-container">
+  <md-sidenav #sidenav class="sidenav">
+
+    <div class="search">
+      <form (submit)="GiphyService.search(searchText)">
+        <input class="search-text" name="search" [(ngModel)]="searchText" placeholder="Search text" />
+        <a style="cursor: pointer" *ngIf="searchText && searchText.length > 0" (click)="GiphyService.search(searchText)">&gt;</a>
+        <button md-raised-button class="small-btn" disabled="{{searchText && searchText.length === 0}}" color="primary" type="submit">Search</button> &nbsp; <button type="button" md-raised-button disabled="{{searchText && searchText.length === 0}}" color="primary" (click)="clearSearch()" class="small-btn">Clear</button>
+      </form>
+      <div>  
+        <md-card *ngFor="let giphy of GiphyService.searchGiphies">
+          <img title="Click to add and copy url" class="giphy-item" (click)="addGiphy(giphy.images.fixed_height)" src="{{giphy.images.fixed_height.url}}">    
+        </md-card>    
+      </div>
+    </div>
+
+  </md-sidenav>
+
+  <div class="sidenav-content">
+    <button type="button" class="small-btn search-nav" md-button (click)="sidenav.open()">
+      Search
+    </button>
+    <div style="display: inline-block">
+      <input class="tag-input"  placeholder="Filter giphies" [(ngModel)]="filterText" (ngModelChange)="filterGiphies($event)" />
+      <span [hidden]=!imageCopied>Giphy url copied!</span>
+      <span>({{filteredGiphies ? filteredGiphies.length : 0}})</span>
+    </div>
+
+    <div class="container drop-zone" (drop)="drop($event)" (dragover)="allowDrop($event)">
+      Drop images here!
+    </div>
+    <div>
       <input class="paste-input" placeholder="Paste url to add" [(ngModel)]="pastedUrl" (change)="pastedGiphyUrl($event)" />
+    </div>
+       
+    <div fxLayout="row" fxLayoutWrap>  
+    
+      <md-card *ngFor="let giphy of filteredGiphies">
+          <button style="float: right" md-button class="small-btn remove-btn" (click)="deleteGiphy(giphy)">REMOVE</button>      
+        <md-card-header>      
+          <md-card-title>
+            <app-inline-edit [(ngModel)]="giphy.caption" (change)="editCaption($event, giphy)" [required]="true" type="text">
+            </app-inline-edit>
+            <span class="click-count">({{giphy.clickCount}})</span>
+          </md-card-title>
+        </md-card-header>
+        <img title="Click to copy url" class="giphy-item" (click)="copyGiphy(giphy)" src="{{giphy.imageUrl}}">
+        <md-card-actions>
+          <inline-chips [tags]="giphy.tags" (tagsUpdated)="onTagsUpdated($event, giphy)"></inline-chips>      
+        </md-card-actions>
+      </md-card>
+    
+    </div>
+
+
   </div>
 
-  <div fxLayout="row" fxLayoutWrap>  
-    <md-card *ngFor="let giphy of GiphyService.searchGiphies">
-      <img title="Click to add and copy url" class="giphy-item" (click)="addGiphy(giphy.images.fixed_height)" src="{{giphy.images.fixed_height.url}}">    
-    </md-card>    
-  </div>
+</md-sidenav-container>
 
-</div>
 
-<h4>Saved Giphies ({{filteredGiphies ? filteredGiphies.length : 0}})</h4>
-<input class="tag-input"  placeholder="Filter giphies" [(ngModel)]="filterText" (ngModelChange)="filterGiphies($event)" />
-<span [hidden]=!imageCopied>Giphy url copied!</span>
-
-<div fxLayout="row" fxLayoutWrap>  
-
-  <md-card *ngFor="let giphy of filteredGiphies">
-      <button style="float: right" md-button class="small-btn remove-btn" (click)="deleteGiphy(giphy)">REMOVE</button>      
-    <md-card-header>      
-      <md-card-title>
-        <app-inline-edit [(ngModel)]="giphy.caption" (change)="editCaption($event, giphy)" [required]="true" type="text">
-        </app-inline-edit>
-        <span class="click-count">({{giphy.clickCount}})</span>
-      </md-card-title>
-    </md-card-header>
-    <img title="Click to copy url" class="giphy-item" (click)="copyGiphy(giphy)" src="{{giphy.imageUrl}}">
-    <md-card-actions>
-      <inline-chips [tags]="giphy.tags" (tagsUpdated)="onTagsUpdated($event, giphy)"></inline-chips>      
-    </md-card-actions>
-  </md-card>
-
-</div>

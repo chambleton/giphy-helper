@@ -1,23 +1,35 @@
 
 .giphy-item {
-    min-height: 150px;
-    min-width: 150px;
-    max-height: 250px;
-    max-width: 350px;
+    min-height: 75px;
+    min-width: 100px;
+    max-height: 150px;
+    max-width: 200px;
     cursor: pointer;
 }
 
+.sidenav-content {
+    background-color: lightgray;
+}
+
 .search {
-    margin: 5px 2px 5px 2px;
+    margin: 5px 5px 5px 5px;
+}
+
+.search-nav {
+    margin: 5px 2px 5px 7px;
+}
+
+.mat-raised-button {
+    padding: 0 8px;
 }
 
 .search-text {
-    width: 200px;
+    width: 100px;
     height: 20px;
 }
 
 .tag-input {
-    width: 120px;
+    width: 220px;
     margin-left: 5px;
     padding-left: 2px;
 }
@@ -26,6 +38,7 @@
     width: 330px;
     margin-left: 10px;
     padding-left: 2px;
+    margin-bottom: 10px;
 }
 
 md-card {
@@ -44,7 +57,7 @@ md-card {
 .mat-card-actions {
     margin-left: 1px;
     margin-right: 1px;
-    max-width: 300px;
+    max-width: 200px;
 }
 
 .drop-zone {
