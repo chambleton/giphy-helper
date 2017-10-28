@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { MdToolbarModule } from '@angular/material';
 
 import { DashboardModule} from './dashboard/dashboard.module';
-import { AppRoutingModule } from './app-routing/app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 @NgModule({
