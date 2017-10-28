@@ -30,6 +30,9 @@ export class DashboardComponent implements OnInit {
     this.GiphyService.searchGiphies = [];
   }
 
+
+
+  
   public addGiphy(giphy: any) {
     this.ClipboardService.copy(giphy.url);
     var newGiphy: Giphy = { caption: "New", tags: [], imageUrl: giphy.url, clickCount: 0};
@@ -40,7 +43,7 @@ export class DashboardComponent implements OnInit {
     this.GiphyService.edit(giphy);
   }
 
-  public copyGiphy(giphy: Giphy) {
+  public copyGiphyUrl(giphy: Giphy) {
     this.ClipboardService.copy(giphy.imageUrl);
     giphy.clickCount++;
     this.GiphyService.edit(giphy);
@@ -55,6 +58,9 @@ export class DashboardComponent implements OnInit {
     this.GiphyService.delete(giphy);
     this.filterGiphies(null);
   }
+
+
+
 
   public allowDrop(ev) {
     //console.log("ALLOW DROP: " + ev);
@@ -76,6 +82,8 @@ export class DashboardComponent implements OnInit {
     //ev.target.appendChild(document.getElementById(data));
   }
   
+
+
   public onTagsUpdated($tags: any[], giphy: Giphy) {
     this.GiphyService.editTags(giphy, $tags);
   }
