@@ -15,6 +15,7 @@ export class InlineChipsComponent {
   selectable: boolean = true;
   removable: boolean = true;
   addOnBlur: boolean = true;
+  showAddButton: boolean = true;
 
   @Input() tags: any[];
   @Output() tagsUpdated: EventEmitter<any[]> = new EventEmitter<any[]>();
@@ -40,6 +41,8 @@ export class InlineChipsComponent {
     if (input) {
       input.value = '';
     }
+    
+    this.showAddButton = true;
     this.tagsUpdated.emit(this.tags);
   }
 
