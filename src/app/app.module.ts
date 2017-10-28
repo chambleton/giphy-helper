@@ -11,7 +11,7 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { InlineEditComponent } from './dashboard/inline-edit/inline-edit.component';
-import { InlineChipsComponent } from './dashboard/inline-chips/inline-chips.component';
+import { InlineTagsComponent } from './dashboard/inline-tags/inline-tags.component';
 import { GiphyService } from './services/giphy.service';
 import { ClipboardService } from './services/clipboard.service';
 
@@ -20,7 +20,7 @@ import { ClipboardService } from './services/clipboard.service';
     AppComponent,
     DashboardComponent,
     InlineEditComponent,
-    InlineChipsComponent
+    InlineTagsComponent
   ],
   imports: [
     BrowserModule,

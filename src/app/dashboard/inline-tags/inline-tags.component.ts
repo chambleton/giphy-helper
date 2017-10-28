@@ -5,12 +5,12 @@ import {MdChipInputEvent, ENTER} from '@angular/material';
 const COMMA = 188;
 
 @Component({
-  selector: 'inline-chips',
-  templateUrl: 'inline-chips.component.html',
-  styleUrls: ['inline-chips.component.scss']
+  selector: 'inline-tags',
+  templateUrl: 'inline-tags.component.html',
+  styleUrls: ['inline-tags.component.scss']
 })
 
-export class InlineChipsComponent {
+export class InlineTagsComponent {
   visible: boolean = true;
   selectable: boolean = true;
   removable: boolean = true;
