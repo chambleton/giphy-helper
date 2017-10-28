@@ -1,3 +1,21 @@
+.search {   
+    float: left;    
+    width: 280px;   
+    margin: 15px 5px 5px 5px;
+    border-right: 1px solid black; 
+}
+
+.search-contents {
+    height: 88vh;
+    overflow-y: auto; 
+    margin-top: 15px; 
+    margin-right: 10px;  
+}
+
+.content {    
+    margin-top: 5px;
+    overflow-y: auto;
+}
 
 .giphy-item {
     min-height: 75px;
@@ -5,14 +23,6 @@
     max-height: 150px;
     max-width: 200px;
     cursor: pointer;
-}
-
-.sidenav-content {
-    background-color: lightgray;
-}
-
-.search {
-    margin: 5px 5px 5px 5px;
 }
 
 .search-nav {
@@ -24,7 +34,7 @@
 }
 
 .search-text {
-    width: 100px;
+    width: 130px;
     height: 20px;
 }
 

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MdButtonModule, MdChipsModule,  MdSidenavModule, MdInputModule, MdToolbarModule, MdCardModule, MdListModule, MdIconModule } from '@angular/material';
+import { MdButtonModule, MdChipsModule, MdInputModule, MdToolbarModule, MdCardModule, MdListModule, MdIconModule } from '@angular/material';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
@@ -30,7 +30,7 @@ import { ClipboardService } from './services/clipboard.service';
     AppRoutingModule,
     Ng2Webstorage,
     HttpModule,
-    MdButtonModule, MdInputModule, MdChipsModule, MdSidenavModule, MdToolbarModule, MdListModule, MdIconModule, MdCardModule
+    MdButtonModule, MdInputModule, MdChipsModule, MdToolbarModule, MdListModule, MdIconModule, MdCardModule
   ],
   providers: [GiphyService, ClipboardService],
   bootstrap: [AppComponent]
