@@ -16,7 +16,6 @@ export class GiphySearchComponent implements OnInit {
 
   ngOnInit() {
   }
-
   
   public clearSearch() {
     this.searchText = "";

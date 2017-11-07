@@ -6,11 +6,12 @@ import { InlineTagsComponent } from '../inline-tags/inline-tags.component';
 
 import { GiphyCardComponent } from './giphycard.component';
 import { GiphyService } from '../../services/giphy.service';
+import { Giphy } from '../../services/giphy.model';
 import { LocalStorageService } from 'ng2-webstorage';
 import { HttpModule } from '@angular/http';
 import { ClipboardService } from '../../services/clipboard.service';
 
-describe('GiphycardComponent', () => {
+describe('GiphyCardComponent', () => {
   let component: GiphyCardComponent;
   let fixture: ComponentFixture<GiphyCardComponent>;
 
@@ -26,6 +27,7 @@ describe('GiphycardComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(GiphyCardComponent);
     component = fixture.componentInstance;
+    component.giphy = new Giphy();
     fixture.detectChanges();
   });
 

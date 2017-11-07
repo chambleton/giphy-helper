@@ -1,8 +1,17 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+import { MdCardModule, MdChipsModule } from '@angular/material';
 
 import { DashboardComponent } from './dashboard.component';
 import { GiphyCardComponent } from './giphycard/giphycard.component';
 import { GiphySearchComponent } from './giphysearch/giphysearch.component';
+import { InlineEditComponent } from './inline-edit/inline-edit.component';
+import { InlineTagsComponent } from './inline-tags/inline-tags.component';
+
+import { GiphyService } from '../services/giphy.service';
+import { LocalStorageService } from 'ng2-webstorage';
+import { ClipboardService } from '../services/clipboard.service';
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
@@ -11,11 +20,14 @@ describe('DashboardComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ 
-        DashboardComponent 
+        DashboardComponent,
+        GiphySearchComponent,
+        GiphyCardComponent,
+        InlineEditComponent,
+        InlineTagsComponent
       ],
-      imports: [
-        GiphySearchComponent
-      ]
+      imports: [FormsModule, MdCardModule, MdChipsModule, HttpModule],
+      providers: [ GiphyService, LocalStorageService, ClipboardService ]
     })
     .compileComponents();
   }));
@@ -30,3 +42,4 @@ describe('DashboardComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+

@@ -8,7 +8,7 @@ import { GiphySearchComponent } from './giphysearch.component';
 import { HttpModule } from '@angular/http';
 import { ClipboardService } from '../../services/clipboard.service';
 
-describe('GiphysearchComponent', () => {
+describe('GiphySearchComponent', () => {
   let component: GiphySearchComponent;
   let fixture: ComponentFixture<GiphySearchComponent>;
 
