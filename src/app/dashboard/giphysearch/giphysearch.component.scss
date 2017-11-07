@@ -1,0 +1,32 @@
+md-card {
+    margin: 5px;
+    padding: 10px 15px 22px 15px;    
+
+    .click-count {
+        font-style: italic;
+    }
+}
+
+.search-contents {
+    height: 88vh;
+    overflow-y: auto; 
+    margin-top: 15px; 
+    margin-right: 10px;  
+}
+
+.search-text {
+    width: 130px;
+    height: 20px;
+}
+
+.mat-raised-button {
+    padding: 0 8px;
+}
+
+.giphy-item {
+    min-height: 75px;
+    min-width: 100px;
+    max-height: 150px;
+    max-width: 200px;
+    cursor: pointer;
+}

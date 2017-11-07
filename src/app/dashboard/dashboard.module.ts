@@ -13,13 +13,17 @@ import { InlineEditComponent } from './inline-edit/inline-edit.component';
 import { InlineTagsComponent } from './inline-tags/inline-tags.component';
 import { GiphyService } from '../services/giphy.service';
 import { ClipboardService } from '../services/clipboard.service';
+import { GiphyCardComponent } from './giphycard/giphycard.component';
+import { GiphySearchComponent } from './giphysearch/giphysearch.component';
 
 
 @NgModule({
   declarations: [
     DashboardComponent,
     InlineEditComponent,
-    InlineTagsComponent
+    InlineTagsComponent,
+    GiphyCardComponent,
+    GiphySearchComponent
     ],
   imports: [
     BrowserModule,

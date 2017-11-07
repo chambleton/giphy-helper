@@ -1,0 +1,14 @@
+<md-card>
+  <button style="float: right" md-button class="small-btn remove-btn" (click)="deleteGiphy(giphy)">REMOVE</button>      
+  <md-card-header>      
+    <md-card-title>
+      <app-inline-edit [(ngModel)]="giphy.caption" (change)="editCaption($event, giphy)" [required]="true" type="text">
+      </app-inline-edit>
+      <span class="click-count">({{giphy.clickCount}})</span>
+    </md-card-title>
+  </md-card-header>
+  <img title="Click to copy url" class="giphy-item" (click)="copyGiphyUrl(giphy)" src="{{giphy.imageUrl}}">
+  <md-card-actions>
+    <inline-tags [tags]="giphy.tags" (tagsUpdated)="onTagsUpdated($event, giphy)"></inline-tags>      
+  </md-card-actions>
+</md-card>

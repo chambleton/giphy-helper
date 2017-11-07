@@ -12,55 +12,29 @@ import { ClipboardService } from '../services/clipboard.service';
 
 export class DashboardComponent implements OnInit {
 
-  public searchText: string;
   public pastedUrl: string;
   public filterText: string;
   public filteredGiphies: Giphy[];  
   public imageCopied: boolean = false;
 
   constructor(public GiphyService: GiphyService, 
-              public ClipboardService: ClipboardService) { }
+              private ClipboardService: ClipboardService) { }
 
   ngOnInit() {
     this.filteredGiphies = this.GiphyService.getSavedGiphies();   
   }
 
-  public clearSearch() {
-    this.searchText = "";
-    this.GiphyService.searchGiphies = [];
+  public onGiphyDeleted(giphy: Giphy) {
+    this.filterGiphies(null);
   }
 
-
-
-  
-  public addGiphy(giphy: any) {
-    this.ClipboardService.copy(giphy.url);
-    var newGiphy: Giphy = { caption: "New", tags: [], imageUrl: giphy.url, clickCount: 0};
-    this.GiphyService.add(newGiphy);
-  }
-
-  public editCaption($event: any, giphy: Giphy) {
-    this.GiphyService.edit(giphy);
-  }
-
-  public copyGiphyUrl(giphy: Giphy) {
-    this.ClipboardService.copy(giphy.imageUrl);
-    giphy.clickCount++;
-    this.GiphyService.edit(giphy);
+  public onGiphyCopied(giphy: Giphy) {
     this.imageCopied = true;
 
     setTimeout(() => {
       this.imageCopied = false;
     }, 3000);
   }
-
-  public deleteGiphy(giphy: Giphy) {        
-    this.GiphyService.delete(giphy);
-    this.filterGiphies(null);
-  }
-
-
-
 
   public allowDrop(ev) {
     //console.log("ALLOW DROP: " + ev);
@@ -80,12 +54,6 @@ export class DashboardComponent implements OnInit {
     this.GiphyService.add(newGiphy);
     //console.log("DATA: " + data);
     //ev.target.appendChild(document.getElementById(data));
-  }
-  
-
-
-  public onTagsUpdated($tags: any[], giphy: Giphy) {
-    this.GiphyService.editTags(giphy, $tags);
   }
 
   public filterGiphies($event) {    

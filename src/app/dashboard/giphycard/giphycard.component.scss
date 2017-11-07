@@ -1,0 +1,32 @@
+md-card {
+    margin: 5px;
+    padding: 10px 15px 22px 15px;    
+
+    .click-count {
+        font-style: italic;
+    }
+}
+
+.mat-button {
+    padding: 0 5px;    
+}
+
+.mat-card-actions {
+    margin-left: 1px;
+    margin-right: 1px;
+    max-width: 200px;
+}
+
+.giphy-item {
+    min-height: 75px;
+    min-width: 100px;
+    max-height: 150px;
+    max-width: 200px;
+    cursor: pointer;
+}
+
+.tag-input {
+    width: 220px;
+    margin-left: 5px;
+    padding-left: 2px;
+}

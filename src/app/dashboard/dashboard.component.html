@@ -1,16 +1,7 @@
 
 
   <div class="search" *ngIf="showSearch">
-    <form (submit)="GiphyService.search(searchText)">
-      <input class="search-text" name="search" [(ngModel)]="searchText" placeholder="Search text" />
-      <a style="cursor: pointer" *ngIf="searchText && searchText.length > 0" (click)="GiphyService.search(searchText)">&gt;</a>
-      <button md-raised-button class="small-btn" disabled="{{searchText && searchText.length === 0}}" color="primary" type="submit">Search</button> &nbsp; <button type="button" md-raised-button disabled="{{searchText && searchText.length === 0}}" color="primary" (click)="clearSearch()" class="small-btn">Clear</button>
-    </form>
-    <div class="search-contents">  
-      <md-card *ngFor="let giphy of GiphyService.searchGiphies">
-        <img title="Click to add and copy url" class="giphy-item" (click)="addGiphy(giphy.images.fixed_height)" src="{{giphy.images.fixed_height.url}}">    
-      </md-card>    
-    </div>
+    <giphy-search></giphy-search>
   </div>
 
   <div class="content">
@@ -31,22 +22,9 @@
     </div>
        
     <div fxLayout="row" fxLayoutWrap>  
-    
-      <md-card *ngFor="let giphy of filteredGiphies">
-          <button style="float: right" md-button class="small-btn remove-btn" (click)="deleteGiphy(giphy)">REMOVE</button>      
-        <md-card-header>      
-          <md-card-title>
-            <app-inline-edit [(ngModel)]="giphy.caption" (change)="editCaption($event, giphy)" [required]="true" type="text">
-            </app-inline-edit>
-            <span class="click-count">({{giphy.clickCount}})</span>
-          </md-card-title>
-        </md-card-header>
-        <img title="Click to copy url" class="giphy-item" (click)="copyGiphyUrl(giphy)" src="{{giphy.imageUrl}}">
-        <md-card-actions>
-          <inline-tags [tags]="giphy.tags" (tagsUpdated)="onTagsUpdated($event, giphy)"></inline-tags>      
-        </md-card-actions>
-      </md-card>
-
+      <span *ngFor="let giphy of filteredGiphies">
+        <giphy-card [giphy]="giphy" (giphyCopied)="onGiphyCopied($event)" (giphyDeleted)="onGiphyDeleted($event)"></giphy-card>
+      </span>
     </div>
 
   </div>
