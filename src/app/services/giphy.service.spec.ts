@@ -1,11 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
-
 import { GiphyService } from './giphy.service';
+import { LocalStorageService } from 'ng2-webstorage';
+import { HttpModule, ConnectionBackend } from '@angular/http';
 
 describe('GiphyService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [GiphyService]
+      imports: [
+        HttpModule
+      ],
+      providers: [GiphyService, LocalStorageService, ConnectionBackend ]
     });
   });
 

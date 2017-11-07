@@ -1,6 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
+import { MdCardModule } from '@angular/material';
 
+import { GiphyService } from '../../services/giphy.service';
+import { LocalStorageService } from 'ng2-webstorage';
 import { GiphySearchComponent } from './giphysearch.component';
+import { HttpModule } from '@angular/http';
+import { ClipboardService } from '../../services/clipboard.service';
 
 describe('GiphysearchComponent', () => {
   let component: GiphySearchComponent;
@@ -8,7 +14,9 @@ describe('GiphysearchComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GiphySearchComponent ]
+      imports: [ FormsModule, MdCardModule, HttpModule ],
+      declarations: [ GiphySearchComponent ],
+      providers: [ GiphyService, LocalStorageService, ClipboardService ]
     })
     .compileComponents();
   }));
