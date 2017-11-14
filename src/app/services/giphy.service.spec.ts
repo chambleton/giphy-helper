@@ -5,7 +5,8 @@ import { LocalStorageService } from 'ng2-webstorage';
 import { HttpModule, ConnectionBackend } from '@angular/http';
 
 describe('GiphyService', () => {
-  //let service: GiphyService;
+  var localStorageService: LocalStorageService;
+  var service: GiphyService;  
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -15,51 +16,42 @@ describe('GiphyService', () => {
       providers: [GiphyService, LocalStorageService, ConnectionBackend ]
     });
 
-    var test: LocalStorageService = TestBed.get(LocalStorageService);
-    spyOn(test, 'store').and.callFake(fakeSave);
+    localStorageService = TestBed.get(LocalStorageService);
+    localStorageService.clear();
+
+    service = TestBed.get(GiphyService);    
   });
   
-/*
-  beforeEach(() => { 
-    service = new AuthService();
-    component = new LoginComponent(service);
-  });
-
   afterEach(() => { 
-    service = null;
-    component = null;
+    localStorageService.clear();
   });
-  */
-  function fakeSave() {
 
-  }
   
-  it('should be created', inject([GiphyService], (service: GiphyService) => {    
+  it('should be created', () => {    
     expect(service).toBeTruthy();
-  }));
+  });
 
-  it('should create empty savedGiphies onInit', inject([GiphyService], (service: GiphyService) => {
+  it('should create empty savedGiphies onInit', () => {
     var giphies = service.getSavedGiphies();
     expect(giphies.length).toBe(0);
-  }));
+  });
 
-  it('should add a giphy and getSavedGiphies', inject([GiphyService], (service: GiphyService) => {
+  it('should add a giphy and getSavedGiphies', () => {
     var giphy: Giphy = { imageUrl: "bity", caption: "a", clickCount: 0, tags:[]}
     service.add(giphy);
     var giphies = service.getSavedGiphies();
-    expect(giphies[giphies.length-1]).toBe(giphy);
-  }));
+    expect(giphies[0]).toBe(giphy);
+  });
 
-
-  it('should clear giphies', inject([GiphyService], (service: GiphyService) => {
+  it('should clear giphies', () => {
     var giphy: Giphy = { imageUrl: "bity", caption: "a", clickCount: 0, tags:[]}
     service.add(giphy);
-    service.clear();        
+    service.clear();
     var giphies = service.getSavedGiphies();
     expect(giphies.length).toBe(0);
-  }));
+  });
 
-  it('should delete a giphy', inject([GiphyService], (service: GiphyService) => {
+  it('should delete a giphy', () => {
     var giphy: Giphy = { imageUrl: "bity", caption: "del", clickCount: 0, tags:[]}    
     var giphies = service.getSavedGiphies();
     var initCount = giphies.length;
@@ -67,10 +59,9 @@ describe('GiphyService', () => {
     service.delete(giphy);
     giphies = service.getSavedGiphies();
     expect(giphies.length).toBe(initCount);
-  }));
+  });
 
-  it('should edit a giphy', inject([GiphyService], (service: GiphyService) => {
-    service.clear();
+  it('should edit a giphy', () => {    
     var giphy: Giphy = { imageUrl: "bity", caption: "a", clickCount: 0, tags:[]}    
     service.add(giphy);
     
@@ -78,27 +69,26 @@ describe('GiphyService', () => {
     giphy.caption = "b";
     service.edit(giphy);
     var giphies = service.getSavedGiphies();    
-    expect(giphies[giphies.length-1]).toBe(giphy);
-  }));
+    expect(giphies[0]).toBe(giphy);
+  });
 
-  it('should edit giphy tags', inject([GiphyService], (service: GiphyService) => {
+  it('should edit giphy tags', () => {
     var giphy: Giphy = { imageUrl: "bity", caption: "a", clickCount: 0, tags:[]}    
     service.add(giphy);
 
     var tags = ["a", "b", "cd"];
     service.editTags(giphy, tags);
     var giphies = service.getSavedGiphies();
-    expect(giphies[giphies.length-1].tags).toBe(tags);
-  }));
-
-  /*
-  it('should save to localStorage', inject([GiphyService], (service: GiphyService) => {
+    expect(giphies[0].tags).toBe(tags);
+  });
+  
+  it('should save to localStorage', () => {
     var giphy: Giphy = { imageUrl: "bity", caption: "a", clickCount: 0, tags:[]}    
-
-    spyOn(LocalStorageService, 'store').and.returnValue([]);    
     service.add(giphy);
-    expect(LocalStorageService.store).toHaveBeenCalled();
-  }));
-*/
+
+    var storage = localStorageService.retrieve("SavedGiphies");   
+    var giphies = service.getSavedGiphies();
+    expect(storage).toBe(giphies);
+  });
 
 });
