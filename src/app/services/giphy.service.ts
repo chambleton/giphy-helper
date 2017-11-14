@@ -39,11 +39,6 @@ export class GiphyService {
     this.save();
   }
 
-  public clear() {
-    this.savedGiphies = [];
-    this.save();
-  }
-
   public edit(giphy: Giphy) {
     this.savedGiphies[this.savedGiphies.indexOf(giphy)] = giphy;
     this.save();

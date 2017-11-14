@@ -43,14 +43,6 @@ describe('GiphyService', () => {
     expect(giphies[0]).toBe(giphy);
   });
 
-  it('should clear giphies', () => {
-    var giphy: Giphy = { imageUrl: "bity", caption: "a", clickCount: 0, tags:[]}
-    service.add(giphy);
-    service.clear();
-    var giphies = service.getSavedGiphies();
-    expect(giphies.length).toBe(0);
-  });
-
   it('should delete a giphy', () => {
     var giphy: Giphy = { imageUrl: "bity", caption: "del", clickCount: 0, tags:[]}    
     var giphies = service.getSavedGiphies();
