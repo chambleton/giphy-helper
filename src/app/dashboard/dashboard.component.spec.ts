@@ -16,6 +16,7 @@ import { ClipboardService } from '../services/clipboard.service';
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
   let fixture: ComponentFixture<DashboardComponent>;
+  let giphyService: GiphyService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -35,11 +36,48 @@ describe('DashboardComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DashboardComponent);
     component = fixture.componentInstance;
+    giphyService = TestBed.get(GiphyService);
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create component', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should call svc filterGiphies if has filtertext', () => {
+    var spy = spyOn(giphyService, 'filterGiphies');    
+    component.filterText = "a";
+    component.filterGiphies(undefined);
+    expect(spy).toHaveBeenCalled();
+  });
+
+  it('should call svc getSavedGiphies if no filtertext', () => {
+    var spy = spyOn(giphyService, 'getSavedGiphies');    
+    component.filterText = "";
+    component.filterGiphies(undefined);
+    expect(spy).toHaveBeenCalled();
+  });
+
+  it('should call svc add if has valid pastedUrl', () => {
+    var spy = spyOn(giphyService, 'add');    
+    component.pastedUrl = "abcdef";
+    component.pastedGiphyUrl(undefined);
+    expect(spy).toHaveBeenCalled();
+  });
+
+  it('should not call svc add if invalid pastedUrl', () => {
+    var spy = spyOn(giphyService, 'add');    
+    component.pastedUrl = "abcde";
+    component.pastedGiphyUrl(undefined);
+    expect(spy).not.toHaveBeenCalled();
+  });
+
+  it('should not call svc add if no pastedUrl', () => {
+    var spy = spyOn(giphyService, 'add');    
+    component.pastedUrl = "";
+    component.pastedGiphyUrl(undefined);
+    expect(spy).not.toHaveBeenCalled();
+  });
+
 });
 
