@@ -16,6 +16,7 @@ export class DashboardComponent implements OnInit {
   public filterText: string;
   public filteredGiphies: Giphy[];  
   public imageCopied: boolean = false;
+  public showSearch: boolean = false;
 
   constructor(public GiphyService: GiphyService, 
               private ClipboardService: ClipboardService) { }
