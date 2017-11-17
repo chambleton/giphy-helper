@@ -5,7 +5,7 @@ export class AppPage {
     return browser.get('/');
   }
 
-  getTitle() {
-    return browser.findElement(by.tagName('title')).getText();
+  getTitle() {    
+    return element(by.css('title')).getText();
   }
 }
