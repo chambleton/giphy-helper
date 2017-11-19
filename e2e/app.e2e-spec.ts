@@ -8,6 +8,11 @@ describe('giphy-helper App', () => {
     page = new AppPage();
   });
 
+  afterEach(() => {
+    browser.executeScript('window.sessionStorage.clear();');
+    browser.executeScript('window.localStorage.clear();');
+  });
+
   it('should display title', () => {
     page.navigateTo();
     expect(page.getTitle()).toEqual('Giphy Helper');
