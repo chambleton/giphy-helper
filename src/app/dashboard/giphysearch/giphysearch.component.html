@@ -1,10 +1,10 @@
 <form (submit)="GiphyService.search(searchText)">
   <input class="search-text" name="search" [(ngModel)]="searchText" placeholder="Search text" />
   <a style="cursor: pointer" *ngIf="searchText && searchText.length > 0" (click)="GiphyService.search(searchText)">&gt;</a>
-  <button md-raised-button class="small-btn" disabled="{{searchText && searchText.length === 0}}" color="primary" type="submit">Search</button> &nbsp; <button type="button" md-raised-button disabled="{{searchText && searchText.length === 0}}" color="primary" (click)="clearSearch()" class="small-btn">Clear</button>
+  <button md-raised-button class="small-btn search-btn" disabled="{{searchText && searchText.length === 0}}" color="primary" type="submit">Search</button> &nbsp; <button type="button" md-raised-button disabled="{{searchText && searchText.length === 0}}" color="primary" (click)="clearSearch()" class="small-btn clear-btn">Clear</button>
 </form>
 <div class="search-contents">  
   <md-card *ngFor="let giphy of GiphyService.searchGiphies">
-    <img title="Click to add and copy url" class="giphy-item" (click)="addGiphy(giphy.images.fixed_height)" src="{{giphy.images.fixed_height.url}}">    
+    <img title="Click to add and copy url" class="giphy-item search-result" (click)="addGiphy(giphy.images.fixed_height)" src="{{giphy.images.fixed_height.url}}">    
   </md-card>    
 </div>

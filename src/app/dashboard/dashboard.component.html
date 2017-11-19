@@ -9,7 +9,7 @@
       Search
     </button>
     <div style="display: inline-block">
-      <input class="tag-input"  placeholder="Filter giphies" [(ngModel)]="filterText" (ngModelChange)="filterGiphies($event)" />
+      <input class="filter-input"  placeholder="Filter giphies" [(ngModel)]="filterText" (ngModelChange)="filterGiphies($event)" />
       <span [hidden]=!imageCopied>Giphy url copied!</span>
       <span>({{filteredGiphies ? filteredGiphies.length : 0}})</span>
     </div>

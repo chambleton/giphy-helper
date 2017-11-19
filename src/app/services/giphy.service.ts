@@ -76,6 +76,14 @@ export class GiphyService {
           }
         }        
       });
+      
+      if (giphy.imageUrl) {
+        if (giphy.imageUrl.toLowerCase().indexOf(filterText.toLowerCase()) >= 0) {
+          results.push(giphy);        
+          return;
+        }
+      }
+
     });
 
     return results;

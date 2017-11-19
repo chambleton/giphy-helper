@@ -5,7 +5,7 @@
     <md-icon mdChipRemove *ngIf="removable">cancel</md-icon>
     </md-chip>
     
-    <md-chip (click)="showAddButton = !showAddButton" *ngIf="showAddButton" 
+    <md-chip class="add-tag-btn" (click)="showAddButton = !showAddButton" *ngIf="showAddButton" 
         [selectable]="false" [removable]="false">+</md-chip>
     <input class="tag-input" *ngIf="!showAddButton" placeholder="New tag..."
         [mdChipInputFor]="tagList"
